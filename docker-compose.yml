@@ -2,7 +2,7 @@ version: '3.5'
 
 services:
   mongodb:
-    container_name: my-mongo-db
+    container_name: mongo-db
     image: mongo:4.4
     ports:
       - 27017:27017
@@ -15,3 +15,17 @@ services:
     volumes:
       - /mongodb:/data/db
     restart: always
+
+  rabbitmq:
+    container_name: rabbit-mq
+    image: rabbitmq:3-management
+    ports:
+      - 5672:5672
+      - 15672:15672
+    environment:
+      RABBITMQ_ERLANG_COOKIE: "ABRKLMASLDASFAREDGKODSQALRPCLNMEQG"
+      RABBITMQ_DEFAULT_USER: "admin"
+      RABBITMQ_DEFAULT_PASS: "yourmqpasswordhere"
+      RABBITMQ_DEFAULT_VHOST: "/"
+#    volumes:
+#      - ./rabbitmq/rabbitmq.config:/etc/rabbitmq/rabbitmq.config:ro
