@@ -1,0 +1,17 @@
+version: '3.5'
+
+services:
+  mongodb:
+    container_name: my-mongo-db
+    image: mongo:4.4
+    ports:
+      - 27017:27017
+    expose:
+      - 27017
+    #    environment:
+    #      MONGO_INITDB_ROOT_USERNAME: root
+    #      MONGO_INITDB_ROOT_PASSWORD: your_password
+    #      MONGO_INITDB_DATABASE: books
+    volumes:
+      - /mongodb:/data/db
+    restart: always
