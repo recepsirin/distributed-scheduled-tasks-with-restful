@@ -12,6 +12,8 @@ class SchemaComponent(ABC, Schema):
         return result
 
     @abstractmethod
-    def deserialize(self):
+    def deserialize(self, payload):
         """Loading"""
-        pass
+
+        result = self.load(payload)
+        return result
