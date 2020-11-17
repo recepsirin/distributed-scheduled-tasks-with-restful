@@ -1,12 +1,15 @@
 from abc import ABC, abstractmethod
+from marshmallow import Schema
 
 
-class SchemaComponent(ABC):
+class SchemaComponent(ABC, Schema):
 
     @abstractmethod
-    def serialize(self):
+    def serialize(self, payload):
         """Dumping"""
-        pass
+
+        result = self.dump(payload)
+        return result
 
     @abstractmethod
     def deserialize(self):
