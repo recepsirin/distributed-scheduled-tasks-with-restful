@@ -2,6 +2,7 @@ version: '3.5'
 
 services:
   mongodb:
+    hostname: localhost
     container_name: mongo-db
     image: mongo:4.4
     ports:
@@ -17,6 +18,7 @@ services:
     restart: always
 
   rabbitmq:
+    hostname: localhost
     container_name: rabbit-mq
     image: rabbitmq:3-management
     ports:
