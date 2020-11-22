@@ -70,3 +70,22 @@ class MongodbHelper:
             print('Update cannot be empty')
         except InvalidName:
             print('Collection name cannot be empty')
+
+    def delete(self, collection=None, query=None, multiple_deletion=False):
+        """
+        :type collection: str -> collection name
+        :type query: dict -> the value(s) you want to delete, it's familiar like where clause
+        :type multiple_deletion: bool -> set true to active multiple deletion
+        :returns the count of deleted items
+        """
+        if query is None:
+            query = {}
+
+        if collection is not None:
+            if multiple_deletion is False:
+                d_res_count = self.db[collection].delete_one(query)
+                return d_res_count.deleted_count
+
+            elif multiple_deletion is True:
+                d_res_count = self.db[collection].delete_many(query)
+                return d_res_count.deleted_count
