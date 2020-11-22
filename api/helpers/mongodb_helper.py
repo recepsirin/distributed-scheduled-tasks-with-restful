@@ -28,3 +28,14 @@ class MongodbHelper:
                 self.db[collection].insert_one(inserted_value)
             elif multiple_insert is True:
                 self.db[collection].insert_many(inserted_value)
+
+    def retrieve(self, collection=None) -> list:
+        """
+        :type collection: str -> collection name
+        :returns a list of records
+        """
+        if collection is not None:
+            r_list = list()
+            for i in self.db[collection].find():
+                r_list.append(i)
+            return r_list
