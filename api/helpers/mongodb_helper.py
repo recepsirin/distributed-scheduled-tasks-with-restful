@@ -1,4 +1,5 @@
 from pymongo import MongoClient
+from pymongo.errors import InvalidName
 
 
 class MongodbHelper:
@@ -39,3 +40,33 @@ class MongodbHelper:
             for i in self.db[collection].find():
                 r_list.append(i)
             return r_list
+
+    def update(self, collection=None, query=None, updated_value=None, multiple_update=False):
+        """
+        :type collection: str -> collection name
+        :type query: dict -> the value(s) you want to update, it's familiar like where clause
+        :type updated_value: dict  -> insert the new value(s), it's familiar like set clause
+        :type multiple_update: bool -> set true to active multiple update
+        """
+
+        if query is None:
+            query = {}
+        if updated_value is None:
+            updated_value = {'$set': {'': ''}}
+
+        try:
+
+            if collection is not None:
+
+                if multiple_update is False:
+                    self.db[collection].update(query, updated_value)
+
+                elif multiple_update is True:
+                    self.db[collection].update_many(query, updated_value)
+
+        except TypeError:
+            print('Inserted valid type please visit the doc')
+        except ValueError:
+            print('Update cannot be empty')
+        except InvalidName:
+            print('Collection name cannot be empty')
