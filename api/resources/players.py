@@ -1,5 +1,5 @@
 from flask import Response, request
-from ..models.players import Player
+from models.players import Player
 from flask_restful import Resource
 from flask_paginate import get_page_args
 from urllib.parse import unquote

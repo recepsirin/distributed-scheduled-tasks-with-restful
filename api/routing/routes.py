@@ -1,4 +1,4 @@
-from ..resources.players import PlayerResource
+from resources.players import PlayerResource
 
 
 def initialize_routes(api):
