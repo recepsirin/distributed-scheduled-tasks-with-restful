@@ -1,0 +1,9 @@
+appName: ChessPlayers
+logLevel: WARN
+
+DEBUG: True
+TESTING: True
+
+database:
+  mongo:
+    dsn: mongodb://localhost:27017/player
