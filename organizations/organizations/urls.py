@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from rest_framework.urlpatterns import format_suffix_patterns
-from organizations.api.views import ChessGameView
+from api.views import ChessGameView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
