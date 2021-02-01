@@ -15,7 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from rest_framework.urlpatterns import format_suffix_patterns
+from organizations.api.views import ChessGameView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('organizations/', ChessGameView.as_view(), name='chess-game'),
+
 ]
+
+urlpatterns = format_suffix_patterns(urlpatterns)
