@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'api',
     'django_filters',
+    'celery',
 ]
 
 MIDDLEWARE = [
@@ -87,6 +88,12 @@ DATABASES = {
         'PASSWORD': 'postgres',
     }
 }
+
+CELERY_BROKER_URL = 'amqp://admin:yourmqpasswordhere@localhost:5672/'
+CELERY_RESULT_BACKEND = 'amqp://admin:yourmqpasswordhere@localhost:5672/'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TASK_SERIALIZER = 'json'
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
