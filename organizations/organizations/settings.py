@@ -84,6 +84,7 @@ DATABASES = {
         'NAME': 'organization',
         'USER': 'postgres',
         'HOST': 'localhost',
+        'PASSWORD': 'postgres',
     }
 }
 
