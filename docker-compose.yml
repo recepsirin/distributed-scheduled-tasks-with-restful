@@ -9,10 +9,11 @@ services:
       - 5672:5672
       - 15672:15672
     environment:
-      RABBITMQ_ERLANG_COOKIE: "ABRKLMASLDASFAREDGKODSQALRPCLNMEQG"
+      RABBITMQ_ERLANG_COOKIE: ""
       RABBITMQ_DEFAULT_USER: "admin"
       RABBITMQ_DEFAULT_PASS: "yourmqpasswordhere"
       RABBITMQ_DEFAULT_VHOST: "/"
+    restart: always
 
   redis:
     hostname: localhost
