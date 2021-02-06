@@ -4,4 +4,3 @@ django-filter==2.4.0
 django-shell-plus==1.1.5
 djangorestframework==3.12.2
 psycopg2-binary==2.8.6
-celery==5.0.5
