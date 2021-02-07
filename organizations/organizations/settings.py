@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'api',
     'django_filters',
     'celery',
+    'django_celery_results',
 ]
 
 MIDDLEWARE = [
@@ -89,11 +90,23 @@ DATABASES = {
     }
 }
 
-CELERY_BROKER_URL = 'amqp://@localhost:5672/'
-CELERY_RESULT_BACKEND = 'amqp://localhost:5672/'
+BROKER_URL = 'amqp://rabbit-mq:5672'
+CELERY_RESULT_BACKEND = 'amqp://rabbit-mq:5672'
 CELERY_ACCEPT_CONTENT = ['application/json']
-CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+
+
+CELERY_RESULT_BACKEND = 'django-db'
+CELERY_RESULT_BACKEND = 'django-cache'
+CELERY_CACHE_BACKEND = 'default'
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        'LOCATION': 'organizations_cache',
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
