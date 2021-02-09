@@ -20,7 +20,7 @@ from api.views import ChessGameView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('organizations/', ChessGameView.as_view(), name='chess-game'),
+    path('organizations/chess-game', ChessGameView.as_view(), name='chess-game'),
 
 ]
 
