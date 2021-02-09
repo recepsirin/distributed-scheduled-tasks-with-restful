@@ -1,5 +1,5 @@
-from .models import ChessGame
-from .serializers import GameSerializer
+from .models import ChessGame, CompetitionResult
+from .serializers import GameSerializer, ResultSerializer
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.generics import ListAPIView, GenericAPIView, CreateAPIView, UpdateAPIView
 from .pagination import Pagination
@@ -23,3 +23,14 @@ class ChessGameView(ListAPIView, CreateAPIView, UpdateAPIView, GenericAPIView):
 
     def patch(self, request, *args, **kwargs):
         return self.partial_update(request, *args, **kwargs)
+
+
+class CompetitionResultView(ListAPIView, CreateAPIView, GenericAPIView):
+    queryset = CompetitionResult.objects.all()
+    serializer_class = ResultSerializer
+
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)

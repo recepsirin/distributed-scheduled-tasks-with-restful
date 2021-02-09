@@ -16,11 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from rest_framework.urlpatterns import format_suffix_patterns
-from api.views import ChessGameView
+from api.views import ChessGameView, CompetitionResultView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('organizations/chess-game', ChessGameView.as_view(), name='chess-game'),
+    path('organizations/chess-games', ChessGameView.as_view(), name='chess-game'),
+    path('organizations/match-results', CompetitionResultView.as_view(), name='competition-result'),
 
 ]
 
