@@ -1,6 +1,6 @@
 from django.test import TestCase
 from django.contrib.auth import get_user_model
-from .models import ChessGame
+from .models import ChessGame, CompetitionResult
 from rest_framework.test import APIClient
 from django.urls import reverse
 from rest_framework import status
@@ -49,3 +49,19 @@ class ChessGameEndpointTest(TestCase):
         competition_date = response.data['results'][0]['competition_date']
 
         self.assertEqual(competition_date, self.chess_game.get('competition_date'))
+
+
+class CompetitionResultModelTest(TestCase):
+
+    def setUp(self):
+        from model_mommy import mommy
+        self.chess_game = mommy.make(ChessGame)
+        self.competition_result = CompetitionResult.objects.create(winner_id=12, match=self.chess_game)
+
+    def test_validate_model(self):
+        with self.assertRaises(Exception):
+            CompetitionResult.objects.create(winner_id=1231, match=None)
+
+        self.assertTrue(self.competition_result.match.white == self.chess_game.white, True)
+        self.assertEqual(self.competition_result.match.black, self.chess_game.black)
+        self.assertTrue(self.competition_result.match.competition_date != self.chess_game.created_date, True)
