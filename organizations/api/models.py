@@ -11,7 +11,10 @@ class ChessGame(models.Model):
     def __str__(self):
         return "%s vs %s >> %s" % (self.white, self.black, self.competition_date)
 
+    class Meta:
+        unique_together = ('white', 'black')
+
 
 class CompetitionResult(models.Model):
-    winner_id = models.IntegerField(null=False)
+    winner_id = models.PositiveIntegerField(null=False)
     match = models.ForeignKey(ChessGame, on_delete=models.CASCADE)
