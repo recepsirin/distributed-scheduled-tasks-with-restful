@@ -1,7 +1,7 @@
 from rest_framework import pagination, response
 
 
-class GamePagination(pagination.PageNumberPagination):
+class Pagination(pagination.PageNumberPagination):
     page_size = 10
     page_size_query_param = 'per_page'
     max_page_size = 1000
